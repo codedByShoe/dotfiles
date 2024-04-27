@@ -47,7 +47,7 @@ ZSH_THEME="robbyrussell"
 # You can also set it to another string to have that shown instead of the default red dots.
 # e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 # Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -77,7 +77,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
-
+export PATH="$PATH:/opt/nvim/" 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -99,7 +99,6 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
 # changing dirs
 alias ..="cd .."
 alias cd..="cd .."
@@ -120,22 +119,13 @@ alias zshrc="vi ~/.zshrc"
 # nice to haves
 alias update="sudo -- sh -c 'apt-get update; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get autoremove -y; apt-get autoclean -y'"
 alias count="ls * | wc -l"
-alias suvi="sudo vi"
+alias sunv="sudo nv"
 alias cl='clear'
 alias proj="cd ~/Projects"
-alias viconfig="cd ~/.config/nvim"
+alias nvconf="cd ~/.config/nvim && nv init.lua"
 alias clock="tty-clock -c -t"
-alias lazysql="~/lazysql"
-# opening editors
-alias vi=nvim
-alias cm=codium
-# dev aliases
-alias art="php artisan"
-alias symserve="symfony server:start -d"
-alias symstop="symfony server:stop"
-alias symlog="symfony server:log"
-## Functions to make terminal experience nice
-
+alias nv=nvim
+alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 # Find string in files
 fstr() {
     grep -Rnw "." -e "$1"
@@ -196,11 +186,5 @@ function extract {
     done
 }
 
-#starship
-# eval "$(starship init bash)"
-# paths
-export PATH="$PATH:$HOME/.config/composer/vendor/bin"
-export PATH="$PATH:/usr/local/go/bin"
-export PATH="$PATH:$HOME/go/bin"
-export PATH="$PATH:$HOME/.local/bin/phpactor"
-export PATH="$PATH:$HOME/usr/local/bin/theme"
+export PATH=$PATH:$HOME/go/bin
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
