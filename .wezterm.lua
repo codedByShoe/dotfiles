@@ -12,8 +12,8 @@ config.default_domain = 'WSL:Ubuntu'
 config.font = wezterm.font('JetBrains Mono', { weight = 'Medium', italic = true })
 config.font_size = 13.0
 -- For example, changing the color scheme:
-config.color_scheme = 'Tokyo Night'
-config.window_background_opacity = 0.9
-
+config.color_scheme = 'Colors (base16)'
+config.window_background_opacity = 0.4
+config.win32_system_backdrop = 'Acrylic'
 config.enable_tab_bar = false
 return config
