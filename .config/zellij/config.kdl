@@ -251,7 +251,7 @@ plugins {
  themes {
     tokyo-night {
         fg 169 177 214
-        bg 26 27 38
+        bg 25 27 38
         black 56 62 90
         red 249 51 87
         green 158 206 106
@@ -267,7 +267,7 @@ plugins {
 // Choose the theme that is specified in the themes section.
 // Default: default
 //
- theme "tokyo-night"
+ theme "catppuccin-mocha" 
 
 // The name of the default layout to load on startup
 // Default: "default"

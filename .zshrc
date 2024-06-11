@@ -70,14 +70,13 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
-export PATH="$PATH:/opt/nvim/" 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -87,7 +86,7 @@ export PATH="$PATH:/opt/nvim/"
 # else
 #   export EDITOR='mvim'
 # fi
-
+export EDITOR='nvim'
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
@@ -99,15 +98,8 @@ export PATH="$PATH:/opt/nvim/"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-# changing dirs
-alias ..="cd .."
-alias cd..="cd .."
-alias ...="cd ../../"
-alias ....="cd ../../../"
 # ls alias
-alias ll='ls -l'
-alias la='ls -Al'
-alias lt='ls -ltrh'
+alias ls='ls-go -ank'
 
 # saving copying
 alias cp='cp -vi'
@@ -115,30 +107,14 @@ alias mv='mv -vi'
 
 # Better copying
 alias cpv='rsync -avh --info=progress2'
-alias zshrc="vi ~/.zshrc"
+alias zshrc="nvim ~/.zshrc"
 # nice to haves
 alias update="sudo -- sh -c 'apt-get update; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get autoremove -y; apt-get autoclean -y'"
 alias count="ls * | wc -l"
-alias sunv="sudo nv"
-alias cl='clear'
-alias proj="cd ~/Projects"
-alias nvconf="cd ~/.config/nvim && nv init.lua"
 alias clock="tty-clock -c -t"
 alias nv=nvim
 alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
-# Find string in files
-fstr() {
-    grep -Rnw "." -e "$1"
-}
-
-# Sudo last command
-slast() { # do sudo, or sudo the last command if no argument given
-    if [[ $# == 0 ]]; then
-        sudo $(history -p '!!')
-    else
-        sudo "$@"
-    fi
-}
+alias ar='php artisan'
 
 # Easy extract files
 function extract {
@@ -186,5 +162,9 @@ function extract {
     done
 }
 
-export PATH=$PATH:$HOME/go/bin
+export PATH="$PATH:$HOME/go/bin:/opt/nvim/:$HOME/.config/composer/vendor/bin:$HOME/bin:/usr/local/bin:$PATH"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(zoxide init --cmd cd zsh)"
+if [[ -z "$ZELLIJ" ]]; then
+    neofetch | lolcat
+fi
