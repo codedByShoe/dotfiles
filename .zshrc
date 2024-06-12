@@ -72,6 +72,9 @@ function extract {
 export PATH="$PATH:$HOME/go/bin:/opt/nvim/:$HOME/.config/composer/vendor/bin:$HOME/bin:/usr/local/bin:$PATH"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(zoxide init --cmd cd zsh)"
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source "$HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source "$HOME/.config/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
 if [[ -z "$ZELLIJ" ]]; then
     neofetch | lolcat
 fi
