@@ -1,8 +1,6 @@
-eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/mocha.omp.json)"
+eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/robbierussell.omp.json)"
 
 COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 export EDITOR='nvim'
 
@@ -22,6 +20,8 @@ alias clock="tty-clock -c -t"
 alias nv=nvim
 alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
 alias ar='php artisan'
+alias lg='lazygit'
+alias gb='gobang'
 
 # Easy extract files
 function extract {
