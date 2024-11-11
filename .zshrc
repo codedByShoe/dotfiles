@@ -1,27 +1,16 @@
-eval "$(oh-my-posh init zsh --config ~/.config/ohmyposh/robbierussell.omp.json)"
-
-COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
-
 export EDITOR='nvim'
 
 alias ls='ls-go -ank'
-
 # saving copying
 alias cp='cp -vi'
 alias mv='mv -vi'
-
-# Better copying
-alias cpv='rsync -avh --info=progress2'
-alias zshrc="nvim ~/.zshrc"
-# nice to haves
 alias update="sudo -- sh -c 'apt-get update; apt-get upgrade -y; apt-get dist-upgrade -y; apt-get autoremove -y; apt-get autoclean -y'"
 alias count="ls * | wc -l"
 alias clock="tty-clock -c -t"
-alias nv=nvim
-alias sail='sh $([ -f sail ] && echo sail || echo vendor/bin/sail)'
-alias ar='php artisan'
-alias lg='lazygit'
-alias gb='gobang'
+alias vim=nvim
+alias lzs=lazysql
+alias lzg=lazygit
+alias ..="cd .."
 
 # Easy extract files
 function extract {
@@ -69,12 +58,14 @@ function extract {
     done
 }
 
-export PATH="$PATH:$HOME/go/bin:/opt/nvim/:$HOME/.config/composer/vendor/bin:$HOME/bin:/usr/local/bin:$PATH"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-eval "$(zoxide init --cmd cd zsh)"
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source "$HOME/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-source "$HOME/.config/zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh"
-if [[ -z "$ZELLIJ" ]]; then
-    neofetch | lolcat
-fi
+bindkey '^y' autosuggest-accept
+
+source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+export PATH="$PATH:$HOME/go/bin:/opt/nvim/:$HOME/.config/composer/vendor/bin:$HOME/bin:/usr/local/bin:${HOME}/.npm-global/bin:${HOME}/.local/bin:$PATH"
+
+eval "$(starship init zsh)"
+
+# Created by `pipx` on 2024-10-26 15:10:20
+export PATH="$PATH:/home/codedbyshoe/.local/bin"
