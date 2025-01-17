@@ -8,7 +8,7 @@ alias update="sudo -- sh -c 'apt-get update; apt-get upgrade -y; apt-get dist-up
 alias count="ls * | wc -l"
 alias clock="tty-clock -c -t"
 alias vim=nvim
-alias lzs=lazysql
+alias ar="php artisan"
 alias lzg=lazygit
 alias ..="cd .."
 
@@ -62,10 +62,9 @@ bindkey '^y' autosuggest-accept
 
 source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.config/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.env
 
 export PATH="$PATH:$HOME/go/bin:/opt/nvim/:$HOME/.config/composer/vendor/bin:$HOME/bin:/usr/local/bin:${HOME}/.npm-global/bin:${HOME}/.local/bin:$PATH"
 
 eval "$(starship init zsh)"
-
-# Created by `pipx` on 2024-10-26 15:10:20
-export PATH="$PATH:/home/codedbyshoe/.local/bin"
+eval "$(zoxide init zsh)"

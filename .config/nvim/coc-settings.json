@@ -1,0 +1,30 @@
+{
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
+  "codeLens.enable": true,
+  "diagnostic.errorSign": "",
+  "diagnostic.warningSign": "",
+  "diagnostic.infoSign": "",
+  "diagnostic.hintSign": "",
+  "diagnostic.enableHighlightLineNumber": true,
+  "coc.preferences.formatOnSave": true,
+  "notification.disabledProgressSources": ["*"],
+  "emmet.includeLanguages": {
+    "vue-html": "html",
+    "blade": "html"
+  },
+
+  "snippets.ultisnips.pythonPrompt": false,
+
+  "[vue][go][php][lua][json]": {
+    "coc.preferences.formatOnSave": true
+  },
+  "stylua.styluaPath": "/home/andrew/.npm-global/bin/stylua",
+  "intelephense.client.disableInlayHints": false,
+  "intelephense.completion.insertUseDeclaration": true,
+  "vue.inlayHints.destructuredProps": true,
+  "vue.inlayHints.missingProps": true,
+  "go.goplsOptions": {
+    "completeUnimported": true
+  }
+}

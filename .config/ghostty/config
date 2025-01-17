@@ -1,0 +1,8 @@
+cursor-style=block
+font-size=16
+font-family="CaskaydiaMono Nerd Font"
+background-opacity=0.75
+background-blur-radius=0
+window-decoration=false
+shell-integration-features=no-cursor
+theme="tokyonight"
