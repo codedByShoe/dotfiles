@@ -13,14 +13,7 @@ get_wallpapers() {
 set_wallpaper() {
   local img="$1"
   if [ -f "$img" ]; then
-    hyprctl hyprpaper unload
-    if hyprctl hyprpaper preload "$img"; then
-      hyprctl hyprpaper wallpaper ",$img"
-    else
-      echo "Failed to preload wallpaper: $img" >&2
-    fi
-  else
-    echo "Image file not found: $img" >&2
+    swww img "$img"
   fi
 }
 
