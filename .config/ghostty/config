@@ -1,8 +1,9 @@
 cursor-style=block
 font-size=14
-font-family="JetBrainsMono Nerd Font
+font-family="JetBrainsMono Nerd Font"
 background-opacity=0.75
 background-blur-radius=0
-window-decoration=false
+window-decoration=true
+window-theme=auto
 shell-integration-features=no-cursor
 theme="tokyonight"
