@@ -1,0 +1,31 @@
+[language-server.emmet-lsp]
+command = "emmet-language-server"
+args = ["--stdio"]
+
+[language-server.pyright.config]
+typeCheckingMode = "basic"
+reportMissingImports = "error"
+
+[[language]]
+name = "tsx"
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+language-servers = ["typescript-language-server", "emmet-lsp"]
+
+# https://github.com/olrtg/emmet-language-server?tab=readme-ov-file#helix
+[[language]]
+name = "html"
+roots = [".git"]
+formatter = { command = "prettier", args = ["--parser", "html"] }
+language-servers = ["vscode-html-language-server", "emmet-lsp"]
+
+[[language]]
+name = "php"
+language-servers = [ "intelephense","tailwindcss-ls","vscode-html-language-server" ]
+auto-format = true
+
+[[language]]
+name = "python"
+roots = ["pyproject.toml", "setup.py", ".git"]
+language-servers = ["basedpyright", "ruff"]
+formatter = { command = "ruff", args = ["format", "-"]}
+auto-format = true
