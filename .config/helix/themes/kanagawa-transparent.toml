@@ -1,0 +1,7 @@
+inherits = "kanagawa"
+
+"ui.background" = {}
+"ui.statusline" = {}
+"ui.help" = {}
+"ui.menu" = {}
+"ui.popup" = {}

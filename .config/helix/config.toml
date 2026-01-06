@@ -1,10 +1,10 @@
-theme = "tokyonight"
+theme = "kanagawa-transparent"
 
 [editor]
 line-number = "relative"
 rulers = [120]
-true-color = true
 end-of-line-diagnostics = "hint"
+true-color = true
 color-modes = true
 
 [editor.statusline]
