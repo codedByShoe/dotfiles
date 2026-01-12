@@ -21,6 +21,15 @@ globalPlugins = [
   { name = "@vue/typescript-plugin", location = "/home/andrew/.local/share/mise/installs/node/25.2.1/lib/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin", languages = ["vue"] }
 ]
 
+
+[[language]]
+name = "typescript"
+auto-format = true
+language-servers = [
+  { name = "vtsls", except-features = ["format"] },
+]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }   
+
 [language-server.vtsls.config.typescript.inlayHints]
 parameterNames = { enabled = "all" }
 parameterTypes = { enabled = true }
@@ -34,13 +43,27 @@ language-servers = ["vtsls"]
 formatter = { command = "prettier", args = ["--parser", "vue"] }
 auto-format = true
 
+[language-server.astro-ls]
+command = "astro-ls"
+args = ["--stdio"]
+
+[language-server.astro-ls.config.typescript]
+tsdk = "/home/andrew/.local/share/mise/installs/node/25.2.1/lib/node_modules/typescript/lib"
+
+[language-server.astro-ls.config.typescript.inlayHints]
+parameterNames = { enabled = "all" }
+parameterTypes = { enabled = true }
+variableTypes = { enabled = true }
+propertyDeclarationTypes = { enabled = true }
+functionLikeReturnTypes = { enabled = true }
+
 [[language]]
 name = "astro"
 scope = "source.astro"
 injection-regex = "astro"
 file-types = ["astro"]
-language-servers = ["astro-ls"]
-formatter = { command = "prettier", args = ["--plugin", "prettier-plugin-astro", "--parser", "astro"] }
+language-servers = ["astro-ls", "vtsls", "emmet-ls"]
+formatter = { command = "prettier", args = ["--plugin", "/home/andrew/.local/share/mise/installs/node/25.2.1/lib/node_modules/prettier-plugin-astro/dist/index.js", "--parser", "astro"] }
 auto-format = true
 
 [[language]]

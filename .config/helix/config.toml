@@ -6,6 +6,24 @@ rulers = [120]
 end-of-line-diagnostics = "hint"
 true-color = true
 color-modes = true
+path-completion = true
+# insert = "bar"
+# normal = "block"
+# select = "block"
+gutters = ["diagnostics", "line-numbers", "diff"]
+
+[editor.soft-wrap]
+enable = true
+
+[editor.auto-save]
+focus-lost  = true
+after-delay.enable = true
+after-delay.timeout = 300000
+
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "underline"
 
 [editor.statusline]
 left = [
@@ -34,30 +52,43 @@ right = [
 ]
 separator = "│"
 
+[editor.lsp]
+display-inlay-hints = true
+
 [editor.inline-diagnostics]
 cursor-line = "warning"
 
 [editor.file-picker]
 hidden = false
+git-ignore = true
 
 [editor.indent-guides]
 render = true
 character = "│"
 skip-levels = 0
 
-[editor.soft-wrap]
-enable = false
+[keys.normal]
+y = "yank_main_selection_to_clipboard"
+p = "paste_clipboard_before"
+P = "paste_clipboard_after"
+d = ["yank_main_selection_to_clipboard", "delete_selection"]
+c = ["yank_main_selection_to_clipboard", "change_selection"]
+K = "hover"
 
-[editor.auto-save]
-focus-lost  = true
-after-delay.enable = true
-after-delay.timeout = 300000
+[keys.select]
+y = "yank_main_selection_to_clipboard"
+p = "replace_selections_with_clipboard"
+d = ["yank_main_selection_to_clipboard", "delete_selection"]
+ret = "expand_selection"
+backspace = "shrink_selection"
+del = "delete_selection"
+
+[keys.normal.space]
+p = "paste_clipboard_before"
+P = "paste_clipboard_after"
 
 [keys.insert]
 "j" = { "k" = "normal_mode" }
-
-[editor.lsp]
-display-inlay-hints = true
 
 [keys.normal.space.f]
 f = "file_picker_in_current_directory"
