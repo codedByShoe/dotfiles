@@ -1,0 +1,21 @@
+font=JetBrainsMono Nerd Font 11
+background-color=#282828dd
+text-color=#ebdbb2
+border-color=#458588
+border-size=2
+border-radius=6
+padding=12
+margin=8
+width=350
+max-visible=3
+default-timeout=5000
+icon-path=/usr/share/icons/Papirus
+max-icon-size=48
+layer=overlay
+
+[urgency=low]
+border-color=#689d6a
+
+[urgency=high]
+border-color=#cc241d
+default-timeout=10000

@@ -1,4 +1,4 @@
-theme = "kanagawa-transparent"
+theme = "tokyonight-transparent"
 
 [editor]
 line-number = "relative"
@@ -74,6 +74,8 @@ P = "paste_clipboard_after"
 d = ["yank_main_selection_to_clipboard", "delete_selection"]
 c = ["yank_main_selection_to_clipboard", "change_selection"]
 K = "hover"
+H = "goto_previous_buffer"
+L = "goto_next_buffer"
 
 [keys.select]
 y = "yank_main_selection_to_clipboard"
@@ -86,6 +88,7 @@ del = "delete_selection"
 [keys.normal.space]
 p = "paste_clipboard_before"
 P = "paste_clipboard_after"
+x = ":buffer-close"
 
 [keys.insert]
 "j" = { "k" = "normal_mode" }

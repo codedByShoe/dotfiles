@@ -1,14 +1,36 @@
+# ─── Emmet ───────────────────────────────────────────────────────────────────
 [language-server.emmet-ls]
-command = "emmet-ls"
+command = "emmet-language-server"
 args = ["--stdio"]
 
-[language-server.pyright.config]
-typeCheckingMode = "basic"
-reportMissingImports = "error"
+# ─── Tailwind CSS ─────────────────────────────────────────────────────────────
+[language-server.tailwindcss-ls]
+command = "tailwindcss-language-server"
+args = ["--stdio"]
 
+# ─── HTML ─────────────────────────────────────────────────────────────────────
+[language-server.vscode-html-language-server]
+command = "vscode-html-language-server"
+args = ["--stdio"]
+
+# ─── TypeScript / vtsls ───────────────────────────────────────────────────────
 [language-server.vtsls]
 command = "vtsls"
 args = ["--stdio"]
+
+# ─── Jinja templates ───────────────────────────────────────────────────────
+[[language]]
+name = "jinja"
+file-types = ["j2", "jinja", "jinja2"]
+formatter = { command = "djlint", args = ["--reformat", "--profile", "jinja", "-"] }
+auto-format = true
+
+# ─── AI Code Assistant / helix-assist ───────────────────────────────────────────────────────
+
+[language-server.helix-assist]
+command = "helix-assist"
+# Optional
+args = ["--handler", "anthropic", "--num-suggestions", "2"]
 
 [language-server.vtsls.config.vtsls]
 autoUseWorkspaceTsdk = true
@@ -18,17 +40,8 @@ enableServerSideFuzzyMatch = true
 
 [language-server.vtsls.config.vtsls.tsserver]
 globalPlugins = [
-  { name = "@vue/typescript-plugin", location = "/home/andrew/.local/share/mise/installs/node/25.2.1/lib/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin", languages = ["vue"] }
+  { name = "@vue/typescript-plugin", location = "/home/andrew/.local/share/mise/installs/node/25.7.0/lib/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin", languages = ["vue"] }
 ]
-
-
-[[language]]
-name = "typescript"
-auto-format = true
-language-servers = [
-  { name = "vtsls", except-features = ["format"] },
-]
-formatter = { command = "prettier", args = ["--parser", "typescript"] }   
 
 [language-server.vtsls.config.typescript.inlayHints]
 parameterNames = { enabled = "all" }
@@ -37,18 +50,18 @@ variableTypes = { enabled = true }
 propertyDeclarationTypes = { enabled = true }
 functionLikeReturnTypes = { enabled = true }
 
-[[language]]
-name = "vue"
-language-servers = ["vtsls"]
-formatter = { command = "prettier", args = ["--parser", "vue"] }
-auto-format = true
+# ─── typescript-language-server (fallback, used by tsx) ───────────────────────
+[language-server.typescript-language-server]
+command = "typescript-language-server"
+args = ["--stdio"]
 
+# ─── Astro ────────────────────────────────────────────────────────────────────
 [language-server.astro-ls]
 command = "astro-ls"
 args = ["--stdio"]
 
 [language-server.astro-ls.config.typescript]
-tsdk = "/home/andrew/.local/share/mise/installs/node/25.2.1/lib/node_modules/typescript/lib"
+tsdk = "/home/andrew/.local/share/mise/installs/node/25.7.0/lib/node_modules/typescript/lib"
 
 [language-server.astro-ls.config.typescript.inlayHints]
 parameterNames = { enabled = "all" }
@@ -57,35 +70,135 @@ variableTypes = { enabled = true }
 propertyDeclarationTypes = { enabled = true }
 functionLikeReturnTypes = { enabled = true }
 
+# ─── Python ───────────────────────────────────────────────────────────────────
+[language-server.basedpyright.config]
+typeCheckingMode = "basic"
+reportMissingImports = "error"
+
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
+
+# ─── Ruby ─────────────────────────────────────────────────────────────────────
+[language-server.ruby-lsp]
+command = "ruby-lsp"
+config = { provideFormatter = true }
+
+[language-server.standardrb]
+command = "standardrb"
+args = ["--lsp"]
+config = { provideFormatter = true }
+
+# ─── Herb (ERB) ───────────────────────────────────────────────────────────────
+[language-server.herb-ls]
+command = "herb-language-server"
+args = ["--stdio"]
+
+# ─── PHP / Intelephense ───────────────────────────────────────────────────────
+[language-server.intelephense]
+command = "intelephense"
+args = ["--stdio"]
+
+# ─── Go ───────────────────────────────────────────────────────────────────────
+[language-server.gopls]
+command = "gopls"
+
+# =============================================================================
+# Language definitions
+# =============================================================================
+
+[[language]]
+name = "typescript"
+auto-format = true
+language-servers = [
+  { name = "vtsls", except-features = ["format"] },
+  "helix-assist"
+]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+
+[[language]]
+name = "tsx"
+auto-format = true
+language-servers = [
+  { name = "vtsls", except-features = ["format"] },
+  "emmet-ls",
+]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+
+[[language]]
+name = "javascript"
+auto-format = true
+language-servers = [
+  { name = "vtsls", except-features = ["format"] },
+]
+formatter = { command = "prettier", args = ["--parser", "babel"] }
+
+[[language]]
+name = "vue"
+auto-format = true
+language-servers = ["vtsls"]
+formatter = { command = "prettier", args = ["--parser", "vue"] }
+
 [[language]]
 name = "astro"
 scope = "source.astro"
 injection-regex = "astro"
 file-types = ["astro"]
-language-servers = ["astro-ls", "vtsls", "emmet-ls"]
-formatter = { command = "prettier", args = ["--plugin", "/home/andrew/.local/share/mise/installs/node/25.2.1/lib/node_modules/prettier-plugin-astro/dist/index.js", "--parser", "astro"] }
 auto-format = true
+language-servers = ["astro-ls", "vtsls", "emmet-ls", "helix-assist"]
+formatter = { command = "prettier", args = ["--plugin", "/home/andrew/.local/share/mise/installs/node/25.7.0/lib/node_modules/prettier-plugin-astro/dist/index.js", "--parser", "astro"] }
 
-[[language]]
-name = "tsx"
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
-language-servers = ["typescript-language-server", "emmet-ls"]
-
-# https://github.com/olrtg/emmet-language-server?tab=readme-ov-file#helix
 [[language]]
 name = "html"
 roots = [".git"]
+auto-format = true
 formatter = { command = "prettier", args = ["--parser", "html"] }
-language-servers = ["vscode-html-language-server", "emmet-ls"]
+language-servers = ["vscode-html-language-server", "emmet-ls", "tailwindcss-ls"]
 
 [[language]]
-name = "php"
-language-servers = [ "intelephense","tailwindcss-ls","vscode-html-language-server" ]
+name = "css"
 auto-format = true
+formatter = { command = "prettier", args = ["--parser", "css"] }
+language-servers = ["vscode-css-language-server", "tailwindcss-ls"]
+
+[[language]]
+name = "json"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "json"] }
+language-servers = ["vscode-json-language-server"]
+
+[[language]]
+name = "toml"
+auto-format = true
+language-servers = ["taplo"]
+
+[[language]]
+name = "bash"
+language-servers = ["bash-language-server"]
+
+[[language]]
+name = "go"
+auto-format = true
+language-servers = ["gopls"]
 
 [[language]]
 name = "python"
 roots = ["pyproject.toml", "setup.py", ".git"]
-language-servers = ["basedpyright", "ruff"]
-formatter = { command = "ruff", args = ["format", "-"]}
 auto-format = true
+language-servers = ["basedpyright", "ruff", "helix-assist"]
+formatter = { command = "ruff", args = ["format", "-"] }
+
+[[language]]
+name = "php"
+auto-format = true
+language-servers = ["intelephense", "tailwindcss-ls", "vscode-html-language-server"]
+
+[[language]]
+name = "ruby"
+auto-format = true
+language-servers = [{ name = "ruby-lsp", except-features = ["format"] }, "standardrb", "helix-assist"]
+
+[[language]]
+name = "erb"
+auto-format = true
+language-servers = ["herb-ls", "emmet-ls", "tailwindcss-ls"]
